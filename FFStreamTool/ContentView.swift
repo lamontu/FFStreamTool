@@ -170,12 +170,16 @@ Step 5: Click Process
         }
 
         // Check license
-        if (licenseState != "已授权" )
-        {
-            showingAlert = true
-            warningMessage = "请输入使用码！"
-            os_log("<- checkOperation no license")
-            return false
+        if licenseState != "已授权" {
+            if let state = UserDefaults.standard.string(forKey: "licenseState") {
+                self.licenseState = state
+            }
+            if licenseState != "已授权" {
+                showingAlert = true
+                warningMessage = "请输入使用码！"
+                os_log("<- checkOperation no license")
+                return false
+            }
         }
 
         let res = CheckLicenseLimt()

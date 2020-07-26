@@ -2,9 +2,10 @@
 //  AppDelegate.swift
 //  FFStreamTool
 //
-//  Created by YuXiaofei on 2020/7/26.
+//  Created by YuXiaofei on 2020/6/7.
 //  Copyright © 2020 YuXiaofei. All rights reserved.
 //
+
 
 import Cocoa
 import SwiftUI
@@ -17,9 +18,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+        let contentView = ContentView(videoCRF: 23.0, keepOriginalSize: true, width: 1280, height: 720, audioMode: "压制音频", audioBitRate: "128k", outputFormat: "mp4").frame(minWidth: 720, maxWidth: .infinity, minHeight: 400, maxHeight: .infinity)
 
-        // Create the window and set the content view. 
+        // Create the window and set the content view.
         window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
@@ -28,12 +29,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.setFrameAutosaveName("Main Window")
         window.contentView = NSHostingView(rootView: contentView)
         window.makeKeyAndOrderFront(nil)
+        window.isReleasedWhenClosed = false
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if !flag {
+            window.makeKeyAndOrderFront(nil)
+        }
 
+        return true
+    }
 }
 

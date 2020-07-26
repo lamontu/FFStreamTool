@@ -481,7 +481,7 @@ Step 5: Click Process
 
                     os_log("Process: Construct ffmpeg commnad")
                     guard let ffmpegPath = Bundle.main.path(forResource: "ffmpeg", ofType: "") else { return }
-                    let command_format = "%@ -i '%@' %@ -c:v libx264 -crf %.1f %@ '%@'"
+                    let command_format = " '%@' -i '%@' %@ -c:v libx264 -crf %.1f %@ '%@' "
                     let ffmpeg_command = String(format: command_format, arguments:[ffmpegPath, self.inputPath, audioOption, self.videoCRF, videoSizeOption, output])
                     let args = ["-c", ffmpeg_command]
                     task.arguments = args

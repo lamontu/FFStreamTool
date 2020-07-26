@@ -69,7 +69,8 @@ struct ContentView: View, DropDelegate {
     @State var showingAlert = false
     @State var warningMessage = ""
 
-    let LicenseLength = 8
+    let LicenseMinLength = 8
+    let LicenseMaxLength = 16
     @State var licenseChecking = false
     @State var usedLicenses: [String] = []
     @State var currentLicense = ""
@@ -116,7 +117,7 @@ Step 5: Click Process
     func CheckLiense(input: String) -> Bool {
         os_log("CheckLiense ->")
         if input.isEmpty { return false }
-        if input.count != 8 { return false }
+        if input.count < LicenseMinLength || input.count > LicenseMaxLength { return false }
         if usedLicenses.count == 0 {
             if let used = UserDefaults.standard.stringArray(forKey: "usedLicenses") {
                 usedLicenses = used

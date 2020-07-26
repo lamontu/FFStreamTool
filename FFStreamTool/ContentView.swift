@@ -540,6 +540,6 @@ Step 5: Click Process
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(videoCRF: 23.0, keepOriginalSize: true, width: 1280, height: 720, audioMode: "压制音频", audioBitRate: "128k", outputFormat: "mp4").frame(minWidth: 720, maxWidth: .infinity, minHeight: 400, maxHeight: .infinity)
+        ContentView(videoCRF: 23.0, keepOriginalSize: true, width: 1280, height: 720, audioMode: "压制音频", audioBitRate: "128k", outputFormat: "mp4").frame(minWidth: 720, maxWidth: .infinity, minHeight: 405, maxHeight: .infinity)
     }
 }
